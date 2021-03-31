@@ -19,6 +19,11 @@ local daynight = b:Label("NIGHT/DAY",{
 	TextColor = Color3.fromRGB(255,255,255); 
 	BgColor = Color3.fromRGB(117, 50, 168);
 }) 
+local disp = b:Label("QUEST NUMBER",{
+	TextSize = 24;
+	TextColor = Color3.fromRGB(255,255,255); 
+	BgColor = Color3.fromRGB(117, 50, 168);
+}) 
 local autofarm
 b:Toggle("AutoFarm",function(bool)
 	autofarm = bool
@@ -44,7 +49,7 @@ local function QUEST()
                     local clienttalk = v:FindFirstChild("CLIENTTALK")
                     repeat wait()
     				    pcall(function()
-    				        player.Character.HumanoidRootPart.CFrame=getmission.CFrame+Vector3.new(0,-10,0)
+    				        player.Character.HumanoidRootPart.CFrame=getmission.CFrame+Vector3.new(0,-6,0)
                             clienttalk:FireServer()
                             clienttalk:FireServer("accept")
                         end)                
@@ -63,16 +68,29 @@ local function FARM()
         if v.ClassName == "Model" and v:FindFirstChild("npctype") and string.find(v.Name, "npc") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 then
 			repeat wait()
 				pcall(function()
-                    player.Character.HumanoidRootPart.CFrame=v.HumanoidRootPart.CFrame+Vector3.new(0,-10,0)
+                    player.Character.HumanoidRootPart.CFrame=v.HumanoidRootPart.CFrame+Vector3.new(0,-6,0)
                     v.Humanoid.Health = 0
                 end)
             until v.Humanoid.Health == 0 or mission.Visible == false or not autofarm or not v
         end
     end
 end
+local count
+local function DISP()
+	count = 0
+	for i,v in pairs(workspace.missiongivers:GetChildren()) do
+		if v.Name == "" and v:FindFirstChild("Head") then
+            if v:FindFirstChild("Head") and v.Head:FindFirstChild("givemission") and v.Head.givemission.Enabled and v.Head.givemission:FindFirstChild("color").Image == "http://www.roblox.com/asset/?id=5459241648" --[[or v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241799"]] then
+			    count = count + 1
+			end
+		end
+	end
+end
+		
 spawn(function()
     while wait() do
         if autofarm then
+			DISP()
             if mission.Visible == false then
 	    	    QUEST()
 	    	else
@@ -95,12 +113,14 @@ game:GetService('RunService').Stepped:connect(function()
 	    pcall(function()
 		    game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
 			daynight:Refresh("NIGHT: " .. tostring(game:GetService("Workspace").daynight.Value))
+			disp:Refresh("Green Quests: " .. tostring(count))
 		end)
 	end
 end)
 local amigo,brr = pcall(function()
     game:GetService("RunService"):UnbindFromRenderStep(game.Players.LocalPlayer.Name .. "Main")
 end)
+
 local f = w:CreateFolder("Credits")
 f:Label("made by reav#2966 | Shindo Life ver 045.3",{
 	TextSize = 15;
