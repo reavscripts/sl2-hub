@@ -19,11 +19,6 @@ local daynight = b:Label("NIGHT/DAY",{
 	TextColor = Color3.fromRGB(255,255,255); 
 	BgColor = Color3.fromRGB(117, 50, 168);
 }) 
-b:Label("Night => NO QUESTS", {
-TextSize = 24;
-	TextColor = Color3.fromRGB(255,255,255); 
-	BgColor = Color3.fromRGB(117, 50, 168);
-}) 
 local autofarm
 b:Toggle("AutoFarm",function(bool)
 	autofarm = bool
@@ -32,9 +27,11 @@ local RANKUP
 b:Toggle("AutoRank (on MaxLvL)",function(bool)
 	RANKUP = bool
 end)
-local amigo,brr = pcall(function()
-    game:GetService("RunService"):UnbindFromRenderStep(game.Players.LocalPlayer.Name .. "Main")
-end)
+b:Label("Night => NO QUESTS", {
+TextSize = 24;
+	TextColor = Color3.fromRGB(255,255,255); 
+	BgColor = Color3.fromRGB(117, 50, 168);
+}) 
 local LEVEL = player.statz.lvl.lvl
 local function QUEST()
     for i,v in pairs(workspace.missiongivers:GetChildren()) do
@@ -100,6 +97,9 @@ game:GetService('RunService').Stepped:connect(function()
 			daynight:Refresh("NIGHT: " .. tostring(game:GetService("Workspace").daynight.Value))
 		end)
 	end
+end)
+local amigo,brr = pcall(function()
+    game:GetService("RunService"):UnbindFromRenderStep(game.Players.LocalPlayer.Name .. "Main")
 end)
 local f = w:CreateFolder("Credits")
 f:Label("made by reav#2966 | Shindo Life ver 045.3",{
