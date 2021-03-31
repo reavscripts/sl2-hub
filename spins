@@ -206,6 +206,20 @@ if game.PlaceId == menuplace then
     ee:Button("Save Element",function()
         game:Shutdown()
     end)
+	local f = w:CreateFolder("Credits")
+    f:Label("made by reav#2966 | Shindo Life ver 045.3",{
+        TextSize = 15;
+        TextColor = Color3.fromRGB(255,255,255); 
+        BgColor = Color3.fromRGB(255, 140, 0);
+    }) 
+    f:Label("https://discord.gg/aDRStgw",{
+        TextSize = 17;
+        TextColor = Color3.fromRGB(255,255,255); 
+        BgColor = Color3.fromRGB(255, 140, 0); 
+    }) 
+    f:Button("Copy Discord Link",function()
+        setclipboard("https://discord.gg/aDRStgw")
+    end)
 else
     e:Label("YOU MUST RUN THIS IN MAIN MENU",{
         TextSize = 15;
