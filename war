@@ -3,9 +3,10 @@ local player = game.Players.LocalPlayer
 local warplace = game:GetService("Workspace"):FindFirstChild("warmode")
 --loading wally ui revamped By Aika
 local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/AikaV3rm/UiLib/master/Lib.lua')))()
+local w = library:CreateWindow("WAR - Shindo Life")
+local c = w:CreateFolder("War Farm")
 if warplace then
 	--WAR
-	local c = w:CreateFolder("War Farm")
 	c:Label("Snipe is built-in",{
 		TextSize = 24;
 		TextColor = Color3.fromRGB(255,255,255); 
@@ -159,6 +160,20 @@ if warplace then
 			end
 		end
 	end)
+	local f = w:CreateFolder("Credits")
+    f:Label("made by reav#2966 | Shindo Life ver 045.3",{
+        TextSize = 15;
+        TextColor = Color3.fromRGB(255,255,255); 
+        BgColor = Color3.fromRGB(255, 140, 0);
+    }) 
+    f:Label("https://discord.gg/aDRStgw",{
+        TextSize = 17;
+        TextColor = Color3.fromRGB(255,255,255); 
+        BgColor = Color3.fromRGB(255, 140, 0); 
+    }) 
+    f:Button("Copy Discord Link",function()
+        setclipboard("https://discord.gg/aDRStgw")
+    end)
 else
     c:Label("YOU MUST RUN THIS IN WAR MODE",{
         TextSize = 15;
