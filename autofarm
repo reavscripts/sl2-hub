@@ -19,7 +19,11 @@ local daynight = b:Label("NIGHT/DAY",{
 	TextColor = Color3.fromRGB(255,255,255); 
 	BgColor = Color3.fromRGB(117, 50, 168);
 }) 
-
+b:Label("Night => NO QUESTS", {
+TextSize = 24;
+	TextColor = Color3.fromRGB(255,255,255); 
+	BgColor = Color3.fromRGB(117, 50, 168);
+}) 
 local autofarm
 b:Toggle("AutoFarm",function(bool)
 	autofarm = bool
@@ -28,11 +32,6 @@ local RANKUP
 b:Toggle("AutoRank (on MaxLvL)",function(bool)
 	RANKUP = bool
 end)
-b:Label("Night => NO QUESTS", {
-TextSize = 24;
-	TextColor = Color3.fromRGB(255,255,255); 
-	BgColor = Color3.fromRGB(117, 50, 168);
-}) 
 local amigo,brr = pcall(function()
     game:GetService("RunService"):UnbindFromRenderStep(game.Players.LocalPlayer.Name .. "Main")
 end)
@@ -101,4 +100,18 @@ game:GetService('RunService').Stepped:connect(function()
 			daynight:Refresh("NIGHT: " .. tostring(game:GetService("Workspace").daynight.Value))
 		end)
 	end
+end)
+local f = w:CreateFolder("Credits")
+f:Label("made by reav#2966 | Shindo Life ver 045.3",{
+	TextSize = 15;
+    TextColor = Color3.fromRGB(255,255,255); 
+    BgColor = Color3.fromRGB(255, 140, 0);
+}) 
+f:Label("https://discord.gg/aDRStgw",{
+	TextSize = 17;
+    TextColor = Color3.fromRGB(255,255,255); 
+    BgColor = Color3.fromRGB(255, 140, 0); 
+}) 
+f:Button("Copy Discord Link",function()
+	setclipboard("https://discord.gg/aDRStgw")
 end)
