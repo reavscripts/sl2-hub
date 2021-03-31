@@ -37,13 +37,22 @@ TextSize = 24;
 	TextColor = Color3.fromRGB(255,255,255); 
 	BgColor = Color3.fromRGB(117, 50, 168);
 }) 
+local qdone = b:Label("Completed Quests", {
+TextSize = 24;
+	TextColor = Color3.fromRGB(255,255,255); 
+	BgColor = Color3.fromRGB(117, 50, 168);
+}) 
 local LEVEL = player.statz.lvl.lvl
+local questdone = 0
+local function QUESTDONE()
+	questdone = questdone + 1
+end
 local function QUEST()
     for i,v in pairs(workspace.missiongivers:GetChildren()) do
         if v.Name == "" and v:FindFirstChild("Head") then
             local TALK = v:FindFirstChild("Talk")
             if v:FindFirstChild("Head") and v.Head:FindFirstChild("givemission") and v.Head.givemission.Enabled and v.Head.givemission:FindFirstChild("color").Image == "http://www.roblox.com/asset/?id=5459241648" --[[or v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241799"]] then
-    		    if TALK:FindFirstChild("mobname") then
+    		    if v:FindFirstChild("Talk"):FindFirstChild("mobname") then
     			    local getmission = v:FindFirstChild("HumanoidRootPart")
                     local clienttalk = v:FindFirstChild("CLIENTTALK")
                     repeat wait()
@@ -57,7 +66,9 @@ local function QUEST()
             end
         end
     end
+    QUESTDONE()
 end
+
 local function FARM()
     for i,v in pairs(workspace.npc:GetChildren()) do
 		local mobname = string.split(mission.bg.name.Text,"Defeat ")[1]
@@ -85,13 +96,13 @@ local function DISP()
 		end
 	end
 end
-		
+
 spawn(function()
     while wait() do
         if autofarm then
 			DISP()
-            if mission.Visible == false then
-	    	    QUEST()
+			if count > 0 and mission.Visible == false then
+			   QUEST()
 	    	else
 	    	    FARM()
             end
@@ -113,6 +124,7 @@ game:GetService('RunService').Stepped:connect(function()
 		    game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
 			daynight:Refresh("NIGHT: " .. tostring(game:GetService("Workspace").daynight.Value))
 			disp:Refresh("Green Quests: " .. tostring(count))
+			qdone:Refresh("Completed: " .. tostring(questdone))
 		end)
 	end
 end)
@@ -121,15 +133,15 @@ local amigo,brr = pcall(function()
 end)
 
 local f = w:CreateFolder("Credits")
-f:Label("made by reav#2966 | Shindo Life ver 045.3",{
+f:Label("made by reav#2966 | Shindo Life ver 044",{
 	TextSize = 15;
     TextColor = Color3.fromRGB(255,255,255); 
-    BgColor = Color3.fromRGB(255, 140, 0);
+    BgColor = Color3.fromRGB(117, 50, 168);
 }) 
 f:Label("https://discord.gg/aDRStgw",{
 	TextSize = 17;
     TextColor = Color3.fromRGB(255,255,255); 
-    BgColor = Color3.fromRGB(255, 140, 0); 
+    BgColor = Color3.fromRGB(117, 50, 168); 
 }) 
 f:Button("Copy Discord Link",function()
 	setclipboard("https://discord.gg/aDRStgw")
