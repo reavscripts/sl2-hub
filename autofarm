@@ -19,11 +19,7 @@ local daynight = b:Label("NIGHT/DAY",{
 	TextColor = Color3.fromRGB(255,255,255); 
 	BgColor = Color3.fromRGB(117, 50, 168);
 }) 
-b:Label("Night => NO QUESTS", {
-TextSize = 24;
-	TextColor = Color3.fromRGB(255,255,255); 
-	BgColor = Color3.fromRGB(117, 50, 168);
-}) 
+
 local autofarm
 b:Toggle("AutoFarm",function(bool)
 	autofarm = bool
@@ -32,6 +28,11 @@ local RANKUP
 b:Toggle("AutoRank (on MaxLvL)",function(bool)
 	RANKUP = bool
 end)
+b:Label("Night => NO QUESTS", {
+TextSize = 24;
+	TextColor = Color3.fromRGB(255,255,255); 
+	BgColor = Color3.fromRGB(117, 50, 168);
+}) 
 local amigo,brr = pcall(function()
     game:GetService("RunService"):UnbindFromRenderStep(game.Players.LocalPlayer.Name .. "Main")
 end)
