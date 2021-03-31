@@ -3,9 +3,10 @@ local player = game.Players.LocalPlayer
 --loading wally ui revamped By Aika
 local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/AikaV3rm/UiLib/master/Lib.lua')))()
 local menuplace = 4616652839
+local w = library:CreateWindow("SPIN - Shindo Life")
+local e = w:CreateFolder("Get BloodLine")
 if game.PlaceId == menuplace then
-    local w = library:CreateWindow("SPIN - Shindo Life")
-	local e = w:CreateFolder("Get BloodLine")
+	
     local kgs = {}
     for i,v in pairs(game:GetService("ReplicatedStorage").alljutsu:GetChildren()) do
         if v:FindFirstChild("KG") then
@@ -15,12 +16,12 @@ if game.PlaceId == menuplace then
     e:Label("Select the Bloodline slot you want to change",{
         TextSize = 15;
         TextColor = Color3.fromRGB(255,255,255); 
-        BgColor = Color3.fromRGB(247, 95, 28);
+        BgColor = Color3.fromRGB(117, 50, 168);
     }) 
     e:Label("Choose your BL and press SPIN",{
         TextSize = 15;
     	TextColor = Color3.fromRGB(255,255,255); 
-    	BgColor = Color3.fromRGB(247, 95, 28);
+    	BgColor = Color3.fromRGB(117, 50, 168);
     }) 
     local b
     local kgslot
@@ -100,7 +101,7 @@ if game.PlaceId == menuplace then
     e:Label("It will reset once you have 0 spin left",{
         TextSize = 15;
     	TextColor = Color3.fromRGB(255,255,255); 
-    	BgColor = Color3.fromRGB(247, 95, 28);
+    	BgColor = Color3.fromRGB(117, 50, 168);
     }) 
     e:Button("Save BloodLine",function()
         game:Shutdown()
@@ -115,12 +116,12 @@ if game.PlaceId == menuplace then
     ee:Label("Select the Element slot you want to change",{
         TextSize = 15;
         TextColor = Color3.fromRGB(255,255,255); 
-        BgColor = Color3.fromRGB(247, 95, 28);
+        BgColor = Color3.fromRGB(117, 50, 168);
     }) 
     ee:Label("Choose your Element and press SPIN",{
         TextSize = 15;
     	TextColor = Color3.fromRGB(255,255,255); 
-    	BgColor = Color3.fromRGB(247, 95, 28);
+    	BgColor = Color3.fromRGB(117, 50, 168);
     }) 
     local b
     local kgslot
@@ -200,9 +201,15 @@ if game.PlaceId == menuplace then
     ee:Label("It will reset once you have 0 spin left",{
         TextSize = 15;
     	TextColor = Color3.fromRGB(255,255,255); 
-    	BgColor = Color3.fromRGB(247, 95, 28);
+    	BgColor = Color3.fromRGB(117, 50, 168);
     }) 
     ee:Button("Save Element",function()
         game:Shutdown()
     end)
+else
+    e:Label("YOU MUST RUN THIS IN MAIN MENU",{
+        TextSize = 15;
+        TextColor = Color3.fromRGB(255,255,255); 
+        BgColor = Color3.fromRGB(117, 50, 168);
+    }) 
 end
