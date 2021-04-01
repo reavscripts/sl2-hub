@@ -44,7 +44,7 @@ function war()
         end
     end
 end
-TextButton_2.MouseButton1Click:connect(war)
+TextButton.MouseButton1Click:connect(war)
 
 TextButton_2.Parent = Frame
 TextButton_2.BackgroundColor3 = Color3.fromRGB(117, 50, 168)
