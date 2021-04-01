@@ -15,12 +15,12 @@ local w = library:CreateWindow("AF - Shindo Life")
 --AUTOFARM
 local b = w:CreateFolder("AutoFarm")
 local daynight = b:Label("NIGHT/DAY",{
-	TextSize = 24;
+	TextSize = 22;
 	TextColor = Color3.fromRGB(255,255,255); 
 	BgColor = Color3.fromRGB(117, 50, 168);
 }) 
 local disp = b:Label("QUEST NUMBER",{
-	TextSize = 24;
+	TextSize = 22;
 	TextColor = Color3.fromRGB(255,255,255); 
 	BgColor = Color3.fromRGB(117, 50, 168);
 }) 
@@ -32,13 +32,13 @@ local RANKUP
 b:Toggle("AutoRank (on MaxLvL)",function(bool)
 	RANKUP = bool
 end)
-b:Label("Night => NO QUESTS", {
-TextSize = 24;
+b:Label("Night = NO QUESTS", {
+TextSize = 22;
 	TextColor = Color3.fromRGB(255,255,255); 
 	BgColor = Color3.fromRGB(117, 50, 168);
 }) 
 local qdone = b:Label("Completed Quests", {
-TextSize = 24;
+TextSize = 22;
 	TextColor = Color3.fromRGB(255,255,255); 
 	BgColor = Color3.fromRGB(117, 50, 168);
 }) 
@@ -52,7 +52,7 @@ local function QUEST()
         if v.Name == "" and v:FindFirstChild("Head") then
             local TALK = v:FindFirstChild("Talk")
             if v:FindFirstChild("Head") and v.Head:FindFirstChild("givemission") and v.Head.givemission.Enabled and v.Head.givemission:FindFirstChild("color").Image == "http://www.roblox.com/asset/?id=5459241648" --[[or v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241799"]] then
-    		    if v:FindFirstChild("Talk"):FindFirstChild("mobname") then
+    		    if v:WaitForChild("Talk"):WaitForChild("mobname") then
     			    local getmission = v:FindFirstChild("HumanoidRootPart")
                     local clienttalk = v:FindFirstChild("CLIENTTALK")
                     repeat wait()
@@ -133,7 +133,7 @@ local amigo,brr = pcall(function()
 end)
 
 local f = w:CreateFolder("Credits")
-f:Label("made by reav#2966 | Shindo Life ver 044",{
+f:Label("made by reav#2966 | Shindo Life ver 045.3",{
 	TextSize = 15;
     TextColor = Color3.fromRGB(255,255,255); 
     BgColor = Color3.fromRGB(117, 50, 168);
