@@ -57,7 +57,7 @@ local function QUEST()
                     local clienttalk = v:FindFirstChild("CLIENTTALK")
                     repeat wait()
     				    pcall(function()
-    				        player.Character.HumanoidRootPart.CFrame=getmission.CFrame+Vector3.new(0,-6,0)
+    				        player.Character.HumanoidRootPart.CFrame=getmission.CFrame+Vector3.new(0,-7,0)
                             clienttalk:FireServer()
                             clienttalk:FireServer("accept")
                         end)                
@@ -78,7 +78,7 @@ local function FARM()
         if v.ClassName == "Model" and v:FindFirstChild("npctype") and string.find(v.Name, "npc") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 then
 			repeat wait()
 				pcall(function()
-                    player.Character.HumanoidRootPart.CFrame=v.HumanoidRootPart.CFrame+Vector3.new(0,-6,0)
+                    player.Character.HumanoidRootPart.CFrame=v.HumanoidRootPart.CFrame+Vector3.new(0,-7,0)
                     v.Humanoid.Health = 0
                 end)
             until v.Humanoid.Health == 0 or mission.Visible == false or not autofarm or not v
