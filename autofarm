@@ -19,11 +19,12 @@ local daynight = b:Label("NIGHT/DAY",{
 	TextColor = Color3.fromRGB(255,255,255); 
 	BgColor = Color3.fromRGB(117, 50, 168);
 }) 
-local disp = b:Label("QUEST NUMBER",{
-	TextSize = 22;
+b:Label("Night = NO QUESTS", {
+TextSize = 22;
 	TextColor = Color3.fromRGB(255,255,255); 
 	BgColor = Color3.fromRGB(117, 50, 168);
 }) 
+
 local autofarm
 b:Toggle("AutoFarm",function(bool)
 	autofarm = bool
@@ -32,8 +33,8 @@ local RANKUP
 b:Toggle("AutoRank (on MaxLvL)",function(bool)
 	RANKUP = bool
 end)
-b:Label("Night = NO QUESTS", {
-TextSize = 22;
+local disp = b:Label("QUESTS AMOUNT",{
+	TextSize = 22;
 	TextColor = Color3.fromRGB(255,255,255); 
 	BgColor = Color3.fromRGB(117, 50, 168);
 }) 
@@ -122,8 +123,12 @@ game:GetService('RunService').Stepped:connect(function()
     if autofarm then
 	    pcall(function()
 		    game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
-			daynight:Refresh("NIGHT: " .. tostring(game:GetService("Workspace").daynight.Value))
-			disp:Refresh("Green Quests: " .. tostring(count))
+		    if game:GetService("Workspace").daynight.Value == true then
+		        daynight:Refresh("NIGHT")
+		    else
+		        daynight:Refresh("DAY")
+		    end
+			disp:Refresh("Availale Quest(s): " .. tostring(count))
 			qdone:Refresh("Completed: " .. tostring(questdone))
 		end)
 	end
