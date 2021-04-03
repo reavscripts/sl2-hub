@@ -15,7 +15,6 @@ local w = library:CreateWindow("AF - Shindo Life")
 _G.ToggleColor = Color3.fromRGB(117, 50, 168)
 _G.ButtonColor = Color3.fromRGB(117, 50, 168)
 _G.ButtonTextColor = Color3.fromRGB(255, 255, 255)
-_G.PointerColor = Color3.fromRGB(255, 255, 255)
 --AUTOFARM
 local b = w:CreateFolder("AutoFarm")
 local daynight = b:Label("NIGHT/DAY",{
@@ -37,6 +36,7 @@ local RANKUPP
 b:Toggle("AutoRank",function(bool)
 	RANKUPP = bool
 end)
+
 local disp = b:Label("QUESTS AMOUNT",{
 	TextSize = 22;
 	TextColor = Color3.fromRGB(255,255,255); 
@@ -114,10 +114,15 @@ spawn(function()
         end
     end
 end)
+
+local PRES = player.statz.prestige.maxlvlpres
+local RANK = player.statz.prestige.rank
+local RANKNUM = player.statz.prestige.number
+
 spawn(function()
 	while wait() do
 		if RANKUPP and player.statz.lvl:FindFirstChild("lvl").Value == 1000 then
-			if PRES.Value > 0 or PRES.Value == 0 and RANK.Value == "Z" and RANKNUM.Value == "3" then
+			if PRES.Value >= 1 or PRES.Value == 0 and RANK.Value == "Z" and RANKNUM.Value == "3" then
 				repeat wait()
 					player.startevent:FireServer("maxlvlpres")
 				until player.statz.lvl:FindFirstChild("lvl").Value == 1 or not RANKUPP
@@ -129,6 +134,7 @@ spawn(function()
 		end
 	end
 end)
+				
 game:GetService('RunService').Stepped:connect(function()
     if autofarm then
 	    pcall(function()
@@ -146,6 +152,18 @@ end)
 local amigo,brr = pcall(function()
     game:GetService("RunService"):UnbindFromRenderStep(game.Players.LocalPlayer.Name .. "Main")
 end)
+
+--old 
+local g = w:CreateFolder("AutoFarm")
+function toTarget(pos, targetPos, targetCFrame)
+    local tween_s = game:service"TweenService"
+    local info = TweenInfo.new((targetPos - pos).Magnitude/getgenv().speed, Enum.EasingStyle.Linear)
+    local tween, err = pcall(function()
+        local tween = tween_s:Create(game:GetService("Players").LocalPlayer.Character["HumanoidRootPart"], info, {CFrame = targetCFrame * CFrame.fromAxisAngle(Vector3.new(1,0,0), math.rad(90))})
+        tween:Play()
+    end)
+    if not tween then return err end
+end
 
 local f = w:CreateFolder("Credits")
 f:Label("made by reav#2966 | Shindo Life ver 045.3",{
