@@ -33,9 +33,9 @@ local autofarm
 b:Toggle("AutoFarm",function(bool)
 	autofarm = bool
 end)
-local RANKUP
-b:Toggle("AutoRank (on MaxLvL)",function(bool)
-	RANKUP = bool
+local RANKUPP
+b:Toggle("AutoRank",function(bool)
+	RANKUPP = bool
 end)
 local disp = b:Label("QUESTS AMOUNT",{
 	TextSize = 22;
@@ -115,11 +115,17 @@ spawn(function()
     end
 end)
 spawn(function()
-    while wait() do
-	    if RANKUP and player.statz.lvl:FindFirstChild("lvl").Value == 1000 then
-		    repeat wait()
-			    game.Players.LocalPlayer.startevent:FireServer("rankup")
-			until player.statz.lvl:FindFirstChild("lvl").Value == 1 or not RANKUP
+	while wait() do
+		if RANKUPP and player.statz.lvl:FindFirstChild("lvl").Value == 1000 then
+			if PRES.Value > 0 or PRES.Value == 0 and RANK.Value == "Z" and RANKNUM.Value == "3" then
+				repeat wait()
+					player.startevent:FireServer("maxlvlpres")
+				until player.statz.lvl:FindFirstChild("lvl").Value == 1 or not RANKUPP
+			else
+				repeat wait()
+					game.Players.LocalPlayer.startevent:FireServer("rankup")
+				until player.statz.lvl:FindFirstChild("lvl").Value == 1 or not RANKUPP
+			end
 		end
 	end
 end)
