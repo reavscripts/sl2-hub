@@ -10,7 +10,7 @@ end)
 local player = game.Players.LocalPlayer
 
 --loading wally ui revamped By Aika
-local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/AikaV3rm/UiLib/master/Lib.lua')))()
+local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/reavscripts/sl2-hub/refs/heads/main/lib')))()
 local w = library:CreateWindow("Misc - Shindo Life")
 local b = w:CreateFolder("Scroll/Jin Farm")
 
